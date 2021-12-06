@@ -20,7 +20,7 @@ type FormatMagicNumbers struct {
 
 func (fmn *FormatMagicNumbers) CheckPayload(payload *[]byte) (bool, error) {
 	if len(*payload) == 0 {
-		return false, errors.New("Empty payload sent")
+		return false, errors.New("Empty payload")
 	}
 
 	checkOutcome := false
