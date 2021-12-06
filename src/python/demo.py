@@ -175,6 +175,12 @@ class MagicNumberDetection:
                 offset: int = magic_pairs[pos]
                 values: bytes = magic_pairs[pos + 1]
                 values_len: int = len(values) + offset
+
+                # Drop out early if payload is shorter than what we want to scan
+                if len(payload) < values_len:
+                    check_outcome = False
+                    break
+
                 working_payload: bytes = payload[offset:values_len]
 
                 if working_payload == values and pos == 0:

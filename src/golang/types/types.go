@@ -30,6 +30,12 @@ func (fmn *FormatMagicNumbers) CheckPayload(payload *[]byte) (bool, error) {
 			offset := singleMagicNumberSet.Offset
 			values := singleMagicNumberSet.Bytes
 			valuesLen := len(values) + offset
+
+			if len(*payload) < valuesLen {
+				checkOutcome = false
+				break
+			}
+
 			workingPayload := (*payload)[offset:valuesLen]
 			comparisonStatus := bytes.Compare(values, workingPayload)
 
